@@ -39,13 +39,15 @@ function largestNum(arr) {
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
-    let multiple = 0
-    for (let i = 0; i <= arr.length; i++) {
-        if (arr[i] <= arr.length) {
-            multiple = arr[i] * arr.length;
-        }
-    }
-    return arr
+    let newArr = []
+    for (let i of arr)
+        newArr.push(i * arr.length)
+    // for (let i = 0; i <= arr.length; i++) {
+    //     if (arr[i] <= arr.length) {
+    //         newArr = arr[i] * arr.length;
+    //     }
+    // }
+    return newArr
 }
 
 
@@ -81,6 +83,14 @@ let flights = [{
 
 function flightCost(destination, firstClass) {
     //***hint: use the find method***
+    let cost = destination.prices.find(price => price.firstClass == firstClass)
+    console.log('[Found Cost]', cost)
+
+    if (cost.prices == firstClass) {
+        return flights.prices.firstClass
+    } else {
+        return flights.prices.standard
+    }
 
 }
 
@@ -102,7 +112,11 @@ let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'P
 { id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
 
 function findById(id) {
-
+    let staffobj = staff.find(s => s.id == id)
+    if (!staffobj) {
+        return { error: 'No user with that id.' }
+    }
+    return staffobj
 }
 
 
